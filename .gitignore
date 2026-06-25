@@ -216,3 +216,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+.env
+
+# ADK local state
+.adk/
+*.db
+*.sqlite
+*.sqlite3
