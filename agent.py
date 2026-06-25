@@ -89,19 +89,23 @@ async def run(question, max_tools, max_rounds):
         user_id="cli", session_id=session.id, new_message=msg
     ):
         raw_events.append(event)
+        who = event.author or "?"
         for part in (event.content.parts if event.content else []):
             if getattr(part, "function_call", None):
-                log(f"[tool] {part.function_call.name}({dict(part.function_call.args)})")
+                log(f"[{who}] tool {part.function_call.name}({dict(part.function_call.args)})")
             if getattr(part, "function_response", None):
                 resp = part.function_response.response
                 if isinstance(resp, dict) and resp.get("budget_rejected"):
-                    log(f"[budget] REJECTED {part.function_response.name}: {resp['reason']}")
+                    log(f"[{who}] budget REJECTED {part.function_response.name}: {resp['reason']}")
             if getattr(part, "text", None):
-                final_text = part.text  # keep the latest assistant text as the answer
+                final_text = part.text  # latest text = verifier's final answer (runs last)
 
     final_state = (await runner.session_service.get_session(
         app_name="hecate", user_id="cli", session_id=session.id)).state
-    log(f"[budget] rounds_used={final_state.get('budget_round', 0)} "
+    # Budget rounds are tracked per-agent (budget_round::<agent>); sum them.
+    rounds = {k.split("::", 1)[1]: v for k, v in final_state.items()
+              if k.startswith("budget_round::")}
+    log(f"[budget] rounds_by_agent={rounds} "
         f"rejections={len(final_state.get('budget_rejections', []))}")
 
     _write_run_log(question, max_tools, max_rounds, raw_events)

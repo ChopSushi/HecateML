@@ -31,23 +31,36 @@ def _limits(state):
     )
 
 
+# Budget is tracked PER AGENT (keyed by agent name) so the researcher and the
+# verifier each get an independent round/tool budget in the SequentialAgent
+# pipeline -- the verifier isn't starved by the researcher's tool usage.
+def _round_key(agent_name):
+    return f"budget_round::{agent_name}"
+
+
+def _tools_key(agent_name):
+    return f"budget_tools_this_round::{agent_name}"
+
+
 def before_model_callback(callback_context, llm_request):
-    """Start of a model turn: advance the round, reset the per-round tool count."""
+    """Start of a model turn: advance this agent's round, reset its tool count."""
     state = callback_context.state
-    state["budget_round"] = int(state.get("budget_round", 0)) + 1
-    state["budget_tools_this_round"] = 0
+    agent = callback_context.agent_name
+    state[_round_key(agent)] = int(state.get(_round_key(agent), 0)) + 1
+    state[_tools_key(agent)] = 0
     return None  # don't override the model call
 
 
 def before_tool_callback(tool, args, tool_context):
-    """Enforce per-round and total-round tool budgets.
+    """Enforce this agent's per-round and total-round tool budgets.
 
     Returns a dict (short-circuiting the tool) when over budget, else None.
     """
     state = tool_context.state
+    agent = tool_context.agent_name
     max_tools, max_rounds = _limits(state)
-    rnd = int(state.get("budget_round", 1))
-    used = int(state.get("budget_tools_this_round", 0))
+    rnd = int(state.get(_round_key(agent), 1))
+    used = int(state.get(_tools_key(agent), 0))
 
     # Past the allowed number of rounds: refuse all further tool calls.
     if rnd > max_rounds:
@@ -66,7 +79,7 @@ def before_tool_callback(tool, args, tool_context):
         )
 
     # Allowed: count it and let it run.
-    state["budget_tools_this_round"] = used + 1
+    state[_tools_key(agent)] = used + 1
     return None
 
 
