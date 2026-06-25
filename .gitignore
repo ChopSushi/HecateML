@@ -223,3 +223,6 @@ __marimo__/
 *.db
 *.sqlite
 *.sqlite3
+
+# Run logs
+runs/
