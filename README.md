@@ -117,6 +117,39 @@ description, and a `dict` return that always carries a `source` and (on success)
 Adding a tool is a plug-in operation: write the typed function, add it to the
 `_TOOLS` list. No other wiring changes.
 
+### Scaling tool selection (design, not yet built)
+
+The flat `_TOOLS` list is right for three tools, but it does not scale: every
+tool's full schema is injected into the agent's context on every call, so dozens
+of tools (let alone thousands) would blow the context window and degrade
+selection accuracy. The pattern I'd reach for — and have built before, now
+roughly the shape of "MCP tool discovery" — is **progressive disclosure via a
+fetcher agent-as-tool**:
+
+```
+   main agent
+       │  "find tools for: academic finance papers"
+       ▼
+  ┌──────────────────┐     searches/ranks      ┌──────────────────────┐
+  │ fetcher (a TOOL  │ ──────────────────────▶ │  tool registry        │
+  │ that is itself   │ ◀────────────────────── │ (hundreds–thousands,  │
+  │ an agent)        │   returns a SMALL,       │  indexed by purpose)  │
+  └──────────────────┘   relevant tool subset   └──────────────────────┘
+       │
+       ▼  only the chosen few tools' schemas are disclosed back
+   main agent calls them
+```
+
+The fetcher is exposed to the main agent as a single tool ("find the right tools
+for this subtask"). It owns the large registry, searches/ranks it, and discloses
+back only the handful of relevant tool schemas — so neither the main agent nor
+the fetcher pays the full-registry context cost. This keeps the main agent's
+window small and its tool-selection sharp regardless of registry size, and makes
+adding a tool a registry entry rather than a prompt change. A natural companion
+is a **tool-routing eval** measuring selection accuracy by question type. Not
+built here (out of scope for a 3-tool PoC), but it's the path from this
+foundation to a real multi-tool platform.
+
 ### Model strategy (free by default)
 
 Configured in [my_agent/agent.py](my_agent/agent.py) via LiteLLM, which makes the
@@ -186,6 +219,25 @@ python3 -m json.tool runs/run-*.json | less
 - **Tool budget:** `--max-tools` / `--max-rounds` cap tool usage, enforced via ADK
   callbacks; over-budget calls are rejected with a message and logged, and the agent
   answers from what it has.
+
+### Tier 3: synthetic failure injection (demonstrated)
+
+[`scripts/demo_resilience.py`](scripts/demo_resilience.py) injects controlled
+failures and shows graceful degradation:
+
+```bash
+.venv/bin/python scripts/demo_resilience.py
+```
+
+1. **Retry + backoff** — a forced `503` (with `Retry-After`) is retried 3× then
+   surfaces a structured error; no crash.
+2. **Structured error** — an unreachable endpoint returns a clean error dict with
+   the specific reason, instead of raising.
+3. **Cross-source fallback (end-to-end)** — arXiv is force-failed; on the
+   cross-tool question (#6) the agent answers from Wikipedia, marks the academic
+   half `[UNVERIFIED]`, and **states the arXiv outage in prose** — no fabricated
+   papers. Compare to the normal #6 output (4 arXiv citations) to see how answer
+   quality degrades honestly when a tool is unavailable.
 
 ---
 
