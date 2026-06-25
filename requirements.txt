@@ -1,0 +1,6 @@
+# HecateML research agent — runtime dependencies.
+# Only these two are needed; all tools use the stdlib + requests (a transitive
+# dependency of google-adk). Install into a Python 3.11 venv:
+#   python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+google-adk==2.3.0
+litellm==1.89.3

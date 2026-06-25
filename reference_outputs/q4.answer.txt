@@ -1,0 +1,17 @@
+## Facts
+- The Federal Reserve's response to the 2008 financial crisis followed two tracks: efforts to support market liquidity and the pursuit of macroeconomic objectives through monetary policy. [1] [SOURCE-CHECKED]
+- The Federal Reserve invoked emergency authority under the Federal Reserve Act of 1913 to authorize broad-based programs and financial assistance to individual institutions to stabilize financial markets during the 2008 crisis. [1] [SOURCE-CHECKED]
+- Outstanding loans from Federal Reserve emergency programs peaked at more than $1 trillion in late 2008. [1] [SOURCE-CHECKED]
+- The initial U.S. federal government response to the COVID-19 pandemic included declarations of emergency, travel restrictions, the formation of the White House Coronavirus Task Force, and the mobilization of the National Guard in affected areas. [2] [SOURCE-CHECKED]
+- State governments played a primary role in implementing social distancing measures and workplace hazard controls during the COVID-19 pandemic, leading to widespread business closures. [2] [SOURCE-CHECKED]
+
+## Answer
+The Federal Reserve's response to the 2008 financial crisis and the COVID-19 pandemic differed in scope and context. During the 2008 crisis, the Federal Reserve acted as a direct stabilizer for financial markets, utilizing its emergency authority under the Federal Reserve Act of 1913 to provide liquidity to institutions, with emergency loan totals exceeding $1 trillion by late 2008 [1].
+
+In contrast, the response to the COVID-19 pandemic was characterized by a broader, government-led public health effort. While the cited facts focus on federal emergency declarations, the White House Coronavirus Task Force, and state-level mandates for social distancing and business closures, the Federal Reserve operated as one part of a wider government-wide economic stabilization strategy [2].
+
+**Interpretation:** The provided facts highlight that the 2008 response was primarily centered on the Federal Reserve's direct role in financial institution and market stabilization. Conversely, the COVID-19 response was defined by the integration of public health mandates and systemic government intervention, within which the Federal Reserve's actions were situated.
+
+## Sources
+[1] Wikipedia — 'Federal Reserve responses to the subprime crisis'. https://en.wikipedia.org/wiki/Federal_Reserve_responses_to_the_subprime_crisis (accessed 2026-06-25T02:59:28Z)
+[2] Wikipedia — 'U.S. federal government response to the COVID-19 pandemic'. https://en.wikipedia.org/wiki/U.S._federal_government_response_to_the_COVID-19_pandemic (accessed 2026-06-25T02:59:29Z)

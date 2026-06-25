@@ -1,0 +1,12 @@
+## Facts
+- Purpose: Basel III was developed to address regulatory deficiencies exposed by the 2008 financial crisis. [1] [VERIFIED]
+- Scope: The framework establishes minimum standards for capital requirements, stress testing, and liquidity regulations. [1] [VERIFIED]
+- Evolution: It is the third in a series of Basel Accords, building upon the standards established by Basel I (1988) and Basel II (2004). [1] [VERIFIED]
+
+## Answer
+The Basel III framework is an international regulatory standard designed to mitigate the risks of bank failures and financial instability by setting requirements for bank capital, liquidity, and leverage [1]. Developed as a direct response to the regulatory gaps exposed by the 2008 financial crisis, Basel III represents the third iteration of the Basel Accords, succeeding Basel I (1988) and Basel II (2004) [1]. 
+
+**Interpretation:** While the high-level purpose, scope, and evolution of the framework are well-documented in standard regulatory summaries, the specific minimum capital percentage ratios (such as Common Equity Tier 1, Tier 1, and Total Capital) are not typically detailed in general overviews. These figures are defined in technical regulatory documentation and are subject to varying implementation timelines and adjustments across different jurisdictions.
+
+## Sources
+[1] Wikipedia — 'Basel III'. https://en.wikipedia.org/wiki/Basel_III (accessed 2026-06-25T02:55:10Z)

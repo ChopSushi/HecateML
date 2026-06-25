@@ -1,3 +1,5 @@
+import os
+
 from google.adk.agents import Agent, SequentialAgent
 from google.adk.models.lite_llm import LiteLlm
 
@@ -5,23 +7,25 @@ from .budget import before_model_callback, before_tool_callback
 from .prompts import researcher_instruction, verifier_instruction
 from .tools import get_fred_series, search_arxiv, search_wikipedia
 
-# Model strategy (LiteLlm reads ANTHROPIC_API_KEY / GEMINI_API_KEY from env):
+# Model strategy (LiteLlm reads GEMINI_API_KEY / ANTHROPIC_API_KEY from env):
 #
-# PRIMARY is Anthropic Claude — reliable, high-quota, strong at tool-calling and
-# synthesis, so development and the researcher+verifier pipeline run smoothly.
+# PRIMARY is a FREE Google AI Studio Gemini model. This is the property the
+# assessment requires: a reviewer with only a free Gemini key (no paid API key)
+# can reproduce results at $0 — the default model path costs nothing.
 #
-# FALLBACKS are the FREE Google AI Studio Gemini models. This is the key property
-# for the assessment: if no paid key is present (e.g. a reviewer reproducing for
-# $0), LiteLlm cascades to the free Gemini tier and the agent still works. The
-# fallbacks also absorb any transient Anthropic error. Free-tier note: the
-# gemini-2.5* models cap at ~20 requests/day; gemini-3.1-flash-lite has more
-# headroom, so it leads the free chain.
-MODEL = "anthropic/claude-haiku-4-5-20251001"
+# FALLBACKS cascade on rate-limit/error across the other free Gemini tiers (each
+# has its own quota pool; the gemini-2.5* models cap at ~20 requests/day, so
+# gemini-3.1-flash-lite leads). Anthropic Haiku is appended ONLY when an
+# ANTHROPIC_API_KEY is present — a developer's optional last resort if every free
+# model is exhausted. Without that key the chain stays 100% free, so a reviewer
+# never hits a confusing auth error from a keyless paid fallback.
+MODEL = "gemini/gemini-3.1-flash-lite"
 FALLBACKS = [
-    "gemini/gemini-3.1-flash-lite",
     "gemini/gemini-2.5-flash-lite",
     "gemini/gemini-2.5-flash",
 ]
+if os.environ.get("ANTHROPIC_API_KEY"):
+    FALLBACKS.append("anthropic/claude-haiku-4-5-20251001")  # optional, paid
 
 _TOOLS = [search_wikipedia, search_arxiv, get_fred_series]
 

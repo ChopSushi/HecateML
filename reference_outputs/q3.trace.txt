@@ -1,0 +1,9 @@
+/Users/wishsison/TitanAI/HecateML/my_agent/agent.py:35: UserWarning: [GEMINI_VIA_LITELLM] gemini/gemini-3.1-flash-lite: You are using Gemini via LiteLLM. For better performance, reliability, and access to latest features, consider using Gemini directly through ADK's native Gemini integration. Replace LiteLlm(model='gemini/gemini-3.1-flash-lite') with Gemini(model='gemini-3.1-flash-lite'). Set ADK_SUPPRESS_GEMINI_LITELLM_WARNINGS=true to suppress this warning.
+  return LiteLlm(model=MODEL, fallbacks=FALLBACKS)
+[config] max_tools=2 max_rounds=2
+[question] What recent academic research exists on using machine learning for credit risk assessment?
+/Users/wishsison/TitanAI/HecateML/.venv/lib/python3.11/site-packages/google/adk/tools/function_tool.py:95: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.
+  build_function_declaration(
+[researcher] tool search_arxiv({'query': 'machine learning credit risk assessment', 'max_results': 3})
+[budget] rounds_by_agent={'researcher': 2, 'verifier': 1} rejections=0
+[log] wrote /Users/wishsison/TitanAI/HecateML/runs/run-20260625T030618Z.json

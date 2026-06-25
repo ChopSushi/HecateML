@@ -1,0 +1,20 @@
+## Facts
+- Most public-key encryption algorithms used in banking rely on mathematical problems—integer factorization, discrete logarithms, and elliptic-curve discrete logarithms—that a sufficiently powerful quantum computer could solve using Shor's algorithm. [1] [VERIFIED]
+- Post-Quantum Cryptography (PQC) refers to cryptographic algorithms designed to be secure against quantum-based attacks; these are considered "quantum-resistant," though their security has not been mathematically proven. [1] [VERIFIED]
+- Research in quantum computing—leveraging superposition and entanglement—has made significant progress, driving exploration into quantum hardware and the need for quantum-secure communications. [2] [VERIFIED]
+- "Harvest Now, Decrypt Later" is a security community speculation where adversaries intercept and store encrypted data for future decryption once quantum hardware is capable. [UNVERIFIED]
+- There is active debate regarding the timeline for "Q-Day"—the moment quantum computers break modern encryption—and whether financial institutions will transition to PQC standards before this deadline. [UNVERIFIED]
+- Future security may shift toward "quantum key establishment," although the scalability and integration of such systems remain speculative. [3] [VERIFIED]
+
+## Answer
+The banking industry faces a significant, long-term risk to its core security infrastructure due to the potential of quantum computing. Because current digital banking relies on public-key encryption algorithms (such as RSA or Elliptic Curve Cryptography), the eventual development of a fault-tolerant quantum computer running Shor's algorithm could render these protections obsolete [1].
+
+In response, the industry is exploring Post-Quantum Cryptography (PQC), which focuses on developing algorithms resistant to quantum cryptanalysis [1]. While these algorithms are being developed, they are currently characterized as quantum-resistant rather than mathematically proven [1]. Additionally, researchers are investigating quantum key establishment as a potential evolution of traditional security protocols [3]. 
+
+It is important to note that the concepts of "Harvest Now, Decrypt Later" tactics, the exact timeline for "Q-Day," and the operational challenges of integrating quantum-secure systems into legacy banking infrastructure are subject to industry speculation and ongoing debate, rather than established fact [2]. Note: Fact [4] was cited in the draft but did not contain relevant information regarding quantum computing or cryptography.
+
+## Sources
+[1] Wikipedia — 'Post-quantum cryptography'. https://en.wikipedia.org/wiki/Post-quantum_cryptography (accessed 2026-06-25T03:00:44Z)
+[2] Gill et al. (2024) — 'Quantum Computing: Vision and Challenges'. http://arxiv.org/abs/2403.02240v5 (accessed 2026-06-25T03:00:47Z)
+[3] Ioannou & Mosca (2011) — 'A new spin on quantum cryptography: Avoiding trapdoors and embracing public keys'. http://arxiv.org/abs/1109.3235v1 (accessed 2026-06-25T03:00:47Z)
+[4] Beyhaghi et al. (2025) — 'Funding advantage and market discipline in the Canadian banking sector'. http://arxiv.org/abs/2507.12620v1 (accessed 2026-06-25T03:00:47Z)

@@ -1,0 +1,13 @@
+## Facts
+- The discount window is a monetary policy instrument used by the Federal Reserve to provide short-term liquidity to eligible depository institutions. [1] [SOURCE-CHECKED]
+- The facility allows banks to borrow funds from the central bank to manage temporary liquidity shortages resulting from either internal or external disruptions. [1] [SOURCE-CHECKED]
+- Borrowing through the discount window is typically structured on a short-term basis. [1] [SOURCE-CHECKED]
+
+## Answer
+The discount window is a Federal Reserve facility that provides short-term liquidity to eligible depository institutions, allowing them to manage temporary cash flow shortages caused by internal or external disruptions [1]. 
+
+The researcher's interpretation—that the discount window functions as a "lender of last resort" backstop—is supported by broader economic definitions. A "lender of last resort" is defined as a central bank that provides liquidity to financial institutions when they cannot obtain it through normal interbank markets, which aligns with the stated function of the discount window as a stabilizer during times of market stress [1][2].
+
+## Sources
+[1] Wikipedia — 'Discount window'. https://en.wikipedia.org/wiki/Discount_window (accessed 2026-06-25T02:54:49Z)
+[2] Wikipedia — 'Lender of last resort'. https://en.wikipedia.org/wiki/Lender_of_last_resort (accessed 2026-06-25T02:54:58Z)

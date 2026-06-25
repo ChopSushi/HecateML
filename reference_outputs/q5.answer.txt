@@ -1,0 +1,10 @@
+## Facts
+- The most recent observation for the US unemployment rate, as of May 2026, is 4.3%. [1] [SOURCE-CHECKED]
+
+## Answer
+The current US unemployment rate, according to the most recent data from the Bureau of Labor Statistics as reported by the St. Louis Fed, is 4.3% as of May 2026 [1]. 
+
+Regarding the change over the past year, the specific tool used provided only the latest snapshot and did not include a historical time series, making it impossible to perform a factual year-over-year comparison with the provided data. Therefore, the trend over the last 12 months remains UNVERIFIED by the tools employed.
+
+## Sources
+[1] FRED (St. Louis Fed), "Unemployment Rate (UNRATE)," https://fred.stlouisfed.org/series/UNRATE, accessed 2026-06-25T02:59:53Z
